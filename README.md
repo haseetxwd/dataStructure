@@ -1,4 +1,4 @@
 # myStl
  data structure practice
  
- 数据结构练习 邓俊辉第三版 上的
+ 数据结构C++  邓俊辉第三版 个人练习
