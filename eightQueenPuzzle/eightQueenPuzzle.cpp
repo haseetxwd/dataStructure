@@ -17,6 +17,7 @@ public:
 	bool operator!=(Queen const& q) const{ return !(*this == q); }
 };
 
+//program entry
 int eightQueenPuzzle() {
 	vector<Queen> solu;
 	Queen q;
@@ -28,15 +29,14 @@ int eightQueenPuzzle() {
 			solu.pop_back();
 			q.y++;
 		}
-		//查找冲突
-//		auto result = find(solu.begin(), solu.end(), q);
+
 		auto result = solu.begin();
 		for (; result != solu.end(); ++result) {
 			if (*result == q) break;
 		}
 		if (result == solu.end() && q.y < 8){
 			solu.push_back(q);
-			if (solu.size() == 8) nSolu++;//得到一个解
+			if (solu.size() == 8) nSolu++;//get one solution
 			q.x++;
 			q.y = 0;
 		}
