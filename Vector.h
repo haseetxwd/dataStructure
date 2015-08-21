@@ -16,8 +16,8 @@ protected:
 	void selectionSort(Rank lo, Rank hi); //选择排序算法
 	void merge(Rank lo, Rank mi, Rank hi); //归并算法
 	void mergeSort(Rank lo, Rank hi); //归并排序算法
-//	Rank partition(Rank lo, Rank hi); //轴点构造算法
-//	void quickSort(Rank lo, Rank hi); //快速排序算法
+	Rank partition(Rank lo, Rank hi); //轴点构造算法
+	void quickSort(Rank lo, Rank hi); //快速排序算法
 //	void heapSort(Rank lo, Rank hi); //堆排序（稍后结合完全堆讲解）
 public:
 	// 构造函数
@@ -300,5 +300,39 @@ void Vector<T>::unsort(Rank lo, Rank hi) {
 		T a = _elem[lo + x];
 		_elem[lo + x] = _elem[i];
 		_elem[i] = a;
+	}
+}
+
+template <typename T>
+void Vector<T>::mergeSort(Rank lo, Rank hi) {
+	if (hi - lo < 2) return;
+	Rank mi = (lo + hi) / 2;
+	mergeSort(lo, mi);
+	mergeSort(mi, hi);
+	merge(lo, mi, hi);
+
+}
+
+template <typename T>
+Rank Vector<T>::partition(Rank lo, Rank hi) {
+	auto last = hi - 1;
+	auto temp = _elem[lo];
+	auto back = true;
+	while (1){
+		if (lo >= last) {
+			_elem[lo] = temp;
+			return lo;
+		}
+		if (back) {
+			while (_elem[last] >= temp && lo < hi)
+				last--;
+			_elem[lo] = _elem[last];
+		}
+		else {
+			while (_elem[last] <= temp && lo < hi)
+				lo++;
+			_elem[last] = _elem[lo];
+		}
+		
 	}
 }
